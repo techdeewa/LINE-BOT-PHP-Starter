@@ -32,7 +32,7 @@ if (!is_null($events['events'])) {
 			
 			*/
 			
-			<?
+		
 $line = array();
 
 array_push($line,"replyToken"=> $access_token);
