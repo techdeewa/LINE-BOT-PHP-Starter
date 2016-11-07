@@ -18,39 +18,23 @@ if (!is_null($events['events'])) {
 			
 			$replyToken = $event['replyToken'];
 
-			/*
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
 				'text' => 'ตอบกลับ : ' . $text
 			];
 
-			array_push($messages, [
-                                'type' => 'text',
-                                'text' => 'ถามมาอีก'
-                        ]);
-			
-			*/
-			
-		
-$line = array();
-
-array_push($line,"replyToken"=> "9nrLlQp7Hd55PKTI20j0A/StX1fbO8MWQblh2Jf0dNc+uN7AjvI13IAjnTgGgfPPn2DGKE2lPTfvw2odlJBa/MQYZyDE7Mu1U0xbHUGFyru6n3AcOogiLlCeKOIKk3UQr83A9odZMo+N0eKf8/2migdB04t89/1O/w1cDnyilFU=");
-array_push($line,"messages"=>array());
-array_push($line['messages'],array("type"=>"text", "text"=>"Hello, user"));
-array_push($line['messages'],array("type"=>"text", "text"=>"May I help you?"));
-
 
 			
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
-			/*
+			
 			$data = [
 				'replyToken' => $replyToken,
 				'messages' => [$messages],
 			];
-			*/
-			$post = json_encode($line);
+			
+			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
 			$ch = curl_init($url);
