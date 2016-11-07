@@ -35,7 +35,7 @@ if (!is_null($events['events'])) {
 		
 $line = array();
 
-array_push($line,"replyToken"=> $access_token);
+array_push($line,"replyToken"=> "9nrLlQp7Hd55PKTI20j0A/StX1fbO8MWQblh2Jf0dNc+uN7AjvI13IAjnTgGgfPPn2DGKE2lPTfvw2odlJBa/MQYZyDE7Mu1U0xbHUGFyru6n3AcOogiLlCeKOIKk3UQr83A9odZMo+N0eKf8/2migdB04t89/1O/w1cDnyilFU=");
 array_push($line,"messages"=>array());
 array_push($line['messages'],array("type"=>"text", "text"=>"Hello, user"));
 array_push($line['messages'],array("type"=>"text", "text"=>"May I help you?"));
