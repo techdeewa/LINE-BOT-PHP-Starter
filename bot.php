@@ -65,8 +65,9 @@ if (!is_null($events['events'])) {
 			
 			if ($ansfund == ''){
 			
-				$ansfund = "ไม่พบกองทุนที่ท่านค้นหา กรุณาลองใหม่อีกครั้ง". chr(13). chr(10);  
-				$ansfund .= "<a href='http://www.kaohoon.com/online/content/category/9/Breaking-News'>ข่าวสารวงการหุ้น</a>";
+				$ansfund = "ไม่พบกองทุนที่ท่านค้นหา กรุณาลองใหม่อีกครั้ง". chr(13). chr(10);
+				$ansfund .= "ข่าวสารวงการหุ้น". chr(13). chr(10);
+				$ansfund .= "http://www.kaohoon.com/online/content/category/9/Breaking-News";
 				
 			}
 				
