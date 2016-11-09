@@ -6,7 +6,7 @@ while (!feof($file_handle) ) {
 
 $line_of_text = fgetcsv($file_handle, 874);
 
-  if ($_GET['code'] == $line_of_text[3] )
+  if (strtoupper($_GET['code']) == strtoupper($line_of_text[3]) )
   {
     print "FUND : " . $line_of_text[0] . "<BR>";
     print "NAME : " . $line_of_text[2] . "<BR>";
