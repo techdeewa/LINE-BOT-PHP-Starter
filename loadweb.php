@@ -50,6 +50,8 @@
 
         //$resd = str_replace("p","h",str_replace("h3","h",str_replace("h5","h",$result[1])));
 
+        $result = "";
+
         for ($x = 1; $x <= 5; $x++) {
 
             $contentres = str_replace("<p>","<h>",str_replace("h3","h",str_replace("h5","h",$newsresult[$x])));
@@ -58,14 +60,26 @@
 
             //split link & topic
             $contentresdsplit = explode(">",str_replace("</h>","",$contentresd[1]));
-            echo "NEWS : " . $x . "</BR>";
-            echo "header : ". str_replace("</a","",$contentresdsplit[1]) . "</BR>";
-            echo "date : " . $contentresd[2] . "</BR>";
-            echo "link : " . str_replace("<a href=","",str_replace('"','',$contentresdsplit[0])) . "</BR>";
-            echo "==================================" . "</BR>";
+            //echo "NEWS : " . $x . "</BR>";
+            //echo "header : ". str_replace("</a","",$contentresdsplit[1]) . "</BR>";
+            //echo "date : " . $contentresd[2] . "</BR>";
+            //echo "link : " . str_replace("<a href=","",str_replace('"','',$contentresdsplit[0])) . "</BR>";
+            //echo "==================================" . "</BR>";
+
+            $result .= "NEWS : " . $x . "</BR>";
+            $result .= "header : ". str_replace("</a","",$contentresdsplit[1]) . "</BR>";
+            $result .= "date : " . $contentresd[2] . "</BR>";
+            $result .= "link : " . str_replace("<a href=","",str_replace('"','',$contentresdsplit[0])) . "</BR>";
+            $result .= "==================================" . "</BR>";
 
         }
 
 
+
+        echo $result;
+
+        //var_dump($resd1);
+
+        //$result = "";
 
 ?>
