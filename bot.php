@@ -20,19 +20,20 @@ if (!is_null($events['events'])) {
 			
 			$replyToken = $event['replyToken'];
 
-			$answer = 'ตอบกลับ : ' . $text . ' from ' . $userId . '\r\n';
+			$answer = 'ตอบกลับ : ' . $text . ' from ' . $userId . '<BR>';
+			
 			
 			$file_handle = fopen("mutualfund.csv", "r");
 			while (!feof($file_handle) ) {
 			$line_of_text = fgetcsv($file_handle, 874);
 			  if ($text == $line_of_text[3] )
 			  {
-			    $answer +=  "FUND : " . $line_of_text[0] . "\r\n";
-			    $answer += "NAME : " . $line_of_text[2] . "\r\n";
-			    $answer += "CODE : " . $line_of_text[3] . "\r\n";
-			    $answer += "ASSET : " . $line_of_text[4] . "\r\n";
-			    $answer += "NAV  " . $line_of_text[5] . "\r\n";
-			    $answer += "======================================================================" . "\r\n";  
+			    $answer .=  "FUND : " . $line_of_text[0] . "<BR>";
+			    $answer .= "NAME : " . $line_of_text[2] . "<BR>";
+			    $answer .= "CODE : " . $line_of_text[3] . "<BR>";
+			    $answer .= "ASSET : " . $line_of_text[4] . "<BR>";
+			    $answer .= "NAV  " . $line_of_text[5] . "<BR>";
+			    $answer .= "======================================================================" . "<BR>";  
 			  }
 			}
 			fclose($file_handle);
