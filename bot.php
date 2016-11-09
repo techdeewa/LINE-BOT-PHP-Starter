@@ -100,11 +100,11 @@ if (!is_null($events['events'])) {
 				    //echo "link : " . str_replace("<a href=","",str_replace('"','',$contentresdsplit[0])) . "</BR>";
 				    //echo "==================================" . "</BR>";
 
-				    $result .= "NEWS : " . $x . "</BR>";
-				    $result .= "header : ". str_replace("</a","",$contentresdsplit[1]) . "</BR>";
-				    $result .= "date : " . $contentresd[2] . "</BR>";
-				    $result .= "link : " . str_replace("<a href=","",str_replace('"','',$contentresdsplit[0])) . "</BR>";
-				    $result .= "==================================" . "</BR>";
+				    $result .= "NEWS : " . $x  . chr(13). chr(10);
+				    $result .= "header : ". str_replace("</a","",$contentresdsplit[1])  . chr(13). chr(10);
+				    $result .= "date : " . $contentresd[2]  . chr(13). chr(10);
+				    $result .= "link : " . str_replace("<a href=","",str_replace('"','',$contentresdsplit[0]))  . chr(13). chr(10);
+				    $result .= "=================================="  . chr(13). chr(10);
 
 				}
 
