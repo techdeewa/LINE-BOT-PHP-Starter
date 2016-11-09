@@ -109,7 +109,7 @@ if (!is_null($events['events'])) {
 				}
 
 				//echo $result;				
-				$andfund = $result;
+				$ansfund = $result;
 			}
 			else
 			{
