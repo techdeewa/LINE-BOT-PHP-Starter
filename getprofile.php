@@ -17,4 +17,11 @@ $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $a
         $output = curl_exec($ch);       
         curl_close($ch);
         echo $output;
+
+        var_dump($output);
+
+ $profile = json_decode($output, true);
+
+echo "DisplayName : " . $profile['displayName'];
+
 ?>
