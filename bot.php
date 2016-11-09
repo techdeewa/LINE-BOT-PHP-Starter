@@ -44,25 +44,35 @@ if (!is_null($events['events'])) {
 			
 			$userName = $profile['displayName'];
 			
-			//$answer = 'ตอบกลับ : ' . $text . ' from ' . $userId . chr(13). chr(10);
-			$answer = 'ตอบกลับ : ' . $text . ' from ' . $userName . chr(13). chr(10);
+
 			
+			$ansfund = '';
 			
 			$file_handle = fopen("mutualfund.csv", "r");
 			while (!feof($file_handle) ) {
 			$line_of_text = fgetcsv($file_handle, 874);
 			  if ($text == $line_of_text[3] )
 			  {
-			    $answer .=  "FUND : " . $line_of_text[0] . chr(13). chr(10);
-			    $answer .= "NAME : " . $line_of_text[2] . chr(13). chr(10);
-			    $answer .= "CODE : " . $line_of_text[3] . chr(13). chr(10);
-			    $answer .= "ASSET : " . $line_of_text[4] . chr(13). chr(10);
-			    $answer .= "NAV  " . $line_of_text[5] . chr(13). chr(10);
-			    $answer .= "======================================================================" . chr(13). chr(10);  
+			    $ansfund .=  "FUND : " . $line_of_text[0] . chr(13). chr(10);
+			    $ansfund .= "NAME : " . $line_of_text[2] . chr(13). chr(10);
+			    $ansfund .= "CODE : " . $line_of_text[3] . chr(13). chr(10);
+			    $ansfund .= "ASSET : " . $line_of_text[4] . chr(13). chr(10);
+			    $ansfund .= "NAV  " . $line_of_text[5] . chr(13). chr(10);
+			    $ansfund .= "================================" . chr(13). chr(10);  
 			  }
 			}
 			fclose($file_handle);
 			
+			if ($ansfund == ''){
+			
+				$ansfund = "ไม่พบกองทุนที่ท่านค้นหา กรุณาลองใหม่อีกครั้ง". chr(13). chr(10);  
+				
+			}
+				
+			
+			//$answer = 'ตอบกลับ : ' . $text . ' from ' . $userId . chr(13). chr(10);
+			$answer = 'ตอบกลับ : ' . $text . ' from ' . $userName . chr(13). chr(10);
+			$answer .= $ansfund;
 			
 			// Build message to reply back
 			$messages = [
