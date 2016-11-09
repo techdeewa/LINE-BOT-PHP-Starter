@@ -73,7 +73,7 @@ if (!is_null($events['events'])) {
 				
 			
 			//$answer = 'ตอบกลับ : ' . $text . ' from ' . $userId . chr(13). chr(10);
-			$answer = 'ตอบกลับ : ' . $text . ' from ' . $userName . chr(13). chr(10);
+			$answer = 'ตอบกลับ : ' . $text . ' ของ ' . $userName . chr(13). chr(10);
 			$answer .= $ansfund;
 			
 			// Build message to reply back
