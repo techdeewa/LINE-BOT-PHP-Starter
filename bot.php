@@ -51,7 +51,7 @@ if (!is_null($events['events'])) {
 			$file_handle = fopen("mutualfund.csv", "r");
 			while (!feof($file_handle) ) {
 			$line_of_text = fgetcsv($file_handle, 874);
-			  if ($text == $line_of_text[3] )
+			  if (strtoupper($text) == strtoupper($line_of_text[3]) )
 			  {
 			    $ansfund .=  "FUND : " . $line_of_text[0] . chr(13). chr(10);
 			    $ansfund .= "NAME : " . $line_of_text[2] . chr(13). chr(10);
