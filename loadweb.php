@@ -36,7 +36,7 @@
         $scraped_page = curl("http://www.kaohoon.com/online/content/category/9/Breaking-News");    // Downloading IMDB home page to variable $scraped_page
         $scraped_data = scrape_between($scraped_page, "<h1>Breaking News</h1>", "<strong>1</strong>");   // Scraping downloaded dara in $scraped_page for content between <title> and </title> tags
 
-        $result = explode("<hr />",$scraped_data);
+        $newsresult = explode("<hr />",$scraped_data);
         //$result = json_encode($result);
 
         //echo $scraped_data; // Echoing $scraped data, should show "The Internet Movie Database (IMDb)"
@@ -44,7 +44,27 @@
         //echo $scraped_data;
 
 
-        var_dump($result);
+        //var_dump($result);
+
+        //echo $result[1];
+
+        //$resd = str_replace("p","h",str_replace("h3","h",str_replace("h5","h",$result[1])));
+
+        for ($x = 1; $x <= 5; $x++) {
+
+            $contentres = str_replace("<p>","<h>",str_replace("h3","h",str_replace("h5","h",$newsresult[$x])));
+
+            $contentresd = explode("<h>",$contentres);
+
+            //split link & topic
+            $contentresdsplit = explode(">",str_replace("</h>","",$contentresd[1]));
+            echo "NEWS : " . $x . "</BR>";
+            echo "header : ". str_replace("</a","",$contentresdsplit[1]) . "</BR>";
+            echo "date : " . $contentresd[2] . "</BR>";
+            echo "link : " . str_replace("<a href=","",str_replace('"','',$contentresdsplit[0])) . "</BR>";
+            echo "==================================" . "</BR>";
+
+        }
 
 
 
