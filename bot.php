@@ -20,10 +20,28 @@ if (!is_null($events['events'])) {
 			
 			$replyToken = $event['replyToken'];
 
+			$answer = 'ตอบกลับ : ' . $text . ' from ' . $userId . '\r\n';
+			
+			$file_handle = fopen("mutualfund.csv", "r");
+			while (!feof($file_handle) ) {
+			$line_of_text = fgetcsv($file_handle, 874);
+			  if ($_GET['code'] == $line_of_text[3] )
+			  {
+			    $answer +=  "FUND : " . $line_of_text[0] . "\r\n";
+			    $answer += "NAME : " . $line_of_text[2] . "\r\n";
+			    $answer += "CODE : " . $line_of_text[3] . "\r\n";
+			    $answer += "ASSET : " . $line_of_text[4] . "\r\n";
+			    $answer += "NAV  " . $line_of_text[5] . "\r\n";
+			    $answer += "======================================================================" . "\r\n";  
+			  }
+			}
+			fclose($file_handle);
+			
+			
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
-				'text' => 'ตอบกลับ : ' . $text . ' from ' . $userId
+				'text' => $answer
 			];
 
 
