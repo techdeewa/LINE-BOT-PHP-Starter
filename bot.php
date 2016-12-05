@@ -116,13 +116,13 @@ if (!is_null($events['events'])) {
 				$scraped_page = curl("http://techdeewa.herokuapp.com/loadstocksummary.php"); 
 				$ansfund = $scraped_page;
 			}
-			else if ($text == "ราคาทอง")
+			else if ($text == "ราคาทองคำ")
 			{
 				$scraped_page = curl("http://techdeewa.herokuapp.com/loadgoldsummary.php"); 
 				$ansfund = $scraped_page;				
 				
 			}	
-			else if ($text == "ราคาน้ำมัน")
+			else if ($text == "ราคาน้ำมันดิบ")
 			{
 
 				$scraped_page = curl("http://techdeewa.herokuapp.com/loadoilsummary.php"); 
@@ -160,9 +160,16 @@ if (!is_null($events['events'])) {
 
 				if ($ansfund == ''){
 
-					$ansfund = "ไม่พบกองทุนที่ท่านค้นหา กรุณาลองใหม่อีกครั้ง". chr(13). chr(10);
-					$ansfund .= "ข่าวสารวงการหุ้น". chr(13). chr(10);
-					$ansfund .= "http://www.kaohoon.com/online/content/category/9/Breaking-News";
+					//$ansfund = "ไม่พบกองทุนที่ท่านค้นหา กรุณาลองใหม่อีกครั้ง". chr(13). chr(10);
+					//$ansfund .= "ข่าวสารวงการหุ้น". chr(13). chr(10);
+					//$ansfund .= "http://www.kaohoon.com/online/content/category/9/Breaking-News";
+					$ansfund = "ไม่พบข้อมูลที่ท่านค้นหา กรุณาลองใหม่อีกครั้ง". chr(13). chr(10);
+					$ansfund .= "keyword แนะนำ". chr(13). chr(10);
+					$ansfund .= "ข่าวหุ้่น". chr(13). chr(10);
+					$ansfund .= "สรุปตลาดหุ้น". chr(13). chr(10);
+					$ansfund .= "ราคาทองคำ". chr(13). chr(10);					
+					$ansfund .= "ราคาน้ำมันดิบ". chr(13). chr(10);										
+					$ansfund .= "อัตราแลกเปลี่ยน". chr(13). chr(10);															
 
 				}
 
