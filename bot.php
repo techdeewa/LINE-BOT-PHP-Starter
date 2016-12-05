@@ -111,6 +111,33 @@ if (!is_null($events['events'])) {
 				//echo $result;				
 				$ansfund = $result;
 			}
+			else if ($text == "สรุปตลาดหุ้น")
+			{
+				$scraped_page = curl("http://techdeewa.herokuapp.com/loadstocksummary.php"); 
+				$ansfund = $scraped_page;
+			}
+			else if ($text == "ราคาทอง")
+			{
+				$scraped_page = curl("http://techdeewa.herokuapp.com/loadgoldsummary.php"); 
+				$ansfund = $scraped_page;				
+				
+			}	
+			else if ($text == "ราคาน้ำมัน")
+			{
+
+				$scraped_page = curl("http://techdeewa.herokuapp.com/loadoilsummary.php"); 
+				$ansfund = $scraped_page;				
+								
+				
+			}			
+			else if ($text == "อัตราแลกเปลี่ยน")
+			{
+				
+			
+				$scraped_page = curl("http://techdeewa.herokuapp.com/loadexratesummary.php"); 
+				$ansfund = $scraped_page;				
+									
+			}						
 			else
 			{
 
