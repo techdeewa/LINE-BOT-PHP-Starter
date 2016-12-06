@@ -64,11 +64,56 @@
         //echo iconv('TIS-620','UTF-8//ignore',$scraped_data);
         //echo $scraped_data;
 
-        echo $summarydate . "</br>";
-        echo "สถาบันในประเทศ : " . $instu_data . "</br>";
-        echo "บัญชีบริษัทหลักทรัพย์ : " . $broker_data . "</br>";
-        echo "นักลงทุนต่างประเทศ : " . $foriegn_data . "</br>";
-        echo "นักลงทุนทั่วไปในประเทศ : " . $local_data . "</br>";
+        //echo $summarydate . chr(13). chr(10);
+        //echo "สถาบันในประเทศ : " . $instu_data . chr(13). chr(10);
+        //echo "บัญชีบริษัทหลักทรัพย์ : " . $broker_data . chr(13). chr(10);
+        //echo "นักลงทุนต่างประเทศ : " . $foriegn_data . chr(13). chr(10);
+        //echo "นักลงทุนทั่วไปในประเทศ : " . $local_data . chr(13). chr(10);
+
+        $instu_data = str_replace('<span class="colorRed">','',$instu_data); // <span class="colorRed">
+        $instu_data = str_replace('<span class="colorGreen">','',$instu_data); // <span class="colorGreen">
+        $instu_data = str_replace('</span>','',$instu_data); // </span>
+        $instu_data = str_replace('<td>','',$instu_data); // </span>
+
+        $broker_data = str_replace('<span class="colorRed">','',$broker_data); // <span class="colorRed">
+        $broker_data = str_replace('<span class="colorGreen">','',$broker_data); // <span class="colorGreen">
+        $broker_data = str_replace('</span>','',$broker_data); // </span>
+        $broker_data = str_replace('<td>','',$broker_data); // </span>
+
+        $foriegn_data = str_replace('<span class="colorRed">','',$foriegn_data); // <span class="colorRed">
+        $foriegn_data = str_replace('<span class="colorGreen">','',$foriegn_data); // <span class="colorGreen">
+        $foriegn_data = str_replace('</span>','',$foriegn_data); // </span>
+        $foriegn_data = str_replace('<td>','',$foriegn_data); // </span>
+
+        $local_data = str_replace('<span class="colorRed">','',$local_data); // <span class="colorRed">
+        $local_data = str_replace('<span class="colorGreen">','',$local_data); // <span class="colorGreen">
+        $local_data = str_replace('</span>','',$local_data); // </span>
+        $local_data = str_replace('<td>','',$local_data); // </span>
+        $local_data = str_replace('<td >','',$local_data); // </span>
+
+        $instu_arr  = explode("</td>",$instu_data);
+        $broker_arr  = explode("</td>",$broker_data);
+        $foriegn_arr  = explode("</td>",$foriegn_data);
+        $local_arr  = explode("</td>",$local_data);
+
+/*
+        echo count($instu_arr) . "</br>";
+        echo $instu_data . "</br>";
+        echo "[0] : " . $instu_arr[0] . "</br>"; //buy
+        echo "[1] : " . $instu_arr[1] . "</br>";
+        echo "[2] : " . $instu_arr[2] . "</br>";//sell
+        echo "[3] : " . $instu_arr[3] . "</br>";
+        echo "[4] : " . $instu_arr[4] . "</br>";//total
+        echo "[5] : " . $instu_arr[5] . "</br>";
+        echo "[6] : " . $instu_arr[6] . "</br>";
+*/
+
+        echo $summarydate . chr(13). chr(10);
+        echo "สถาบันในประเทศ : ซื้อ " . $instu_data[0] . " ขาย " . $instu_arr[2] ." สุทธิ " . $instu_arr[4]. chr(13). chr(10);
+        echo "บัญชีบริษัทหลักทรัพย์ : ซื้อ " . $broker_arr[0] . " ขาย " . $broker_arr[2] ." สุทธิ " . $broker_arr[4]. chr(13). chr(10);
+        echo "นักลงทุนต่างประเทศ : ซื้อ " . $foriegn_arr[0] . " ขาย " . $foriegn_arr[2] ." สุทธิ " . $foriegn_arr[4]. chr(13). chr(10);
+        echo "นักลงทุนทั่วไปในประเทศ : ซื้อ " . $local_arr[0] . " ขาย " . $local_arr[2] ." สุทธิ " . $local_arr[4]. chr(13). chr(10);
+
 
 
 /*
