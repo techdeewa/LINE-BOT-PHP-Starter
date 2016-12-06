@@ -57,7 +57,7 @@
        $set100_arr  = explode("/td>",$mk_set100);
        $sethd_arr  = explode("/td>",$mk_sethd);
 
-      echo "ข้อมูล ณ เวลา "$mk_lstupd . chr(13). chr(10);
+      echo "ข้อมูล ณ เวลา ". $mk_lstupd . chr(13). chr(10);
       echo "SET : last " . scrape_between($set_arr[1],">","<") . " Change " . scrape_between($set_arr[2],">","<") . " % Chg " . scrape_between($set_arr[3],">","<") . " Vol " . scrape_between($set_arr[7],">","<") . chr(13). chr(10);
       echo "SET50 : last " . scrape_between($set50_arr[1],">","<") . " Change " . scrape_between($set50_arr[2],">","<") . " % Chg " . scrape_between($set50_arr[3],">","<") . " Vol " . scrape_between($set50_arr[7],">","<") . chr(13). chr(10);
       echo "SET100 : last " . scrape_between($set100_arr[1],">","<") . " Change " . scrape_between($set100_arr[2],">","<") . " % Chg " . scrape_between($set100_arr[3],">","<") . " Vol " . scrape_between($set100_arr[7],">","<") . chr(13). chr(10);
