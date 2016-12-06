@@ -43,8 +43,37 @@
         $brent = scrape_between($scraped_page_raw, "Brent Crude (ICE)",'data-type="spark-line');
 
         //echo $scraped_data;
-        echo "WTI OIL : " . $wti . "></br>";
-        echo "Brent Crude (ICE) : " . $brent . "></br>";
+
+        //echo $wti;
+        $wti_arr = explode("/td>",$wti);
+
+        $brent_arr = explode("/td>",$brent);
+
+        /*
+        echo count($brent_arr);
+
+        for ($x = 1; $x < 33; $x++) {
+
+            echo "arr [" . $x . "] " . $brent_arr[$x] . "</br>";
+
+        }
+        */
+
+
+
+
+        echo "WTI OIL(USD/bbl) : ". chr(13). chr(10). "Price " . scrape_between($wti_arr[2],'>','<') . chr(13). chr(10);
+        echo "Change " .scrape_between($wti_arr[3],'>','<') . chr(13). chr(10);
+        echo "% " . scrape_between($wti_arr[4],'>','<'). chr(13). chr(10);
+        echo "as of " . scrape_between($wti_arr[5],'>','<') . " ". scrape_between($wti_arr[6],'>','<'). chr(13). chr(10);
+        echo  chr(13). chr(10);
+        echo "Brent Crude (ICE)(USD/bbl) : ". chr(13). chr(10). "Price " . scrape_between($brent_arr[2],'>','<') . chr(13). chr(10);
+        echo "Change " .scrape_between($brent_arr[3],'>','<') . chr(13). chr(10);
+        echo "% " . scrape_between($brent_arr[4],'>','<'). chr(13). chr(10);
+        echo "as of " . scrape_between($brent_arr[5],'>','<') . " ". scrape_between($brent_arr[6],'>','<'). chr(13). chr(10);
+
+        //echo "Brent Crude (ICE)(USD/bbl) : " . $brent . "></br>";
+
 
         /*
         $scraped_data = iconv('TIS-620','UTF-8//ignore',$scraped_page_raw);
