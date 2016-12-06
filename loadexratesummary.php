@@ -39,7 +39,22 @@
         $scraped_page_raw = curl("https://www.bot.or.th/Thai/Statistics/FinancialMarkets/ExchangeRate/_layouts/Application/ExchangeRate/ExchangeRate.aspx");    // Downloading IMDB home page to variable $scraped_page
         $scraped_data = scrape_between($scraped_page_raw, "ctl00_PlaceHolderMain_dgAvg", "</table>");   // Scraping downloaded dara in $scraped_page for content between <title> and </title> tags
 
-        echo $scraped_data;
+        //echo $scraped_data;
+
+$exrate_arr = explode('width:25%;"',$scraped_data); //20
+
+
+
+
+for ($country = 1; $country < 20; $country++) {
+
+    $exrate_arrbycurrency =  explode('/td>',$exrate_arr[$country]); //7
+
+    echo scrape_between($exrate_arrbycurrency[0],">","<"). "(" . trim(scrape_between($exrate_arrbycurrency[1],">","<")) . ")" . "ซื้อ " . scrape_between($exrate_arrbycurrency[3],">","<") . " ขาย " . scrape_between($exrate_arrbycurrency[4],">","<") . chr(13). chr(10);
+
+}
+
+
 
 
         /*
