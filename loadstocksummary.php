@@ -3,6 +3,9 @@
 
 //http://www.settrade.com/C13_InvestorType.jsp
 
+//http://www.settrade.com/C13_MarketSummary.jsp
+
+
     // Defining the basic scraping function
     function scrape_between($data, $start, $end){
         $data = stristr($data, $start); // Stripping all data from before $start
@@ -34,6 +37,44 @@
         return $data;   // Returning the data from the function
     }
 
+       $scraped_page_mksum_raw = curl("http://www.settrade.com/C13_MarketSummary.jsp");
+       $scraped_mksum_data = iconv('TIS-620','UTF-8//ignore',$scraped_page_mksum_raw);
+       $scraped_mksum_data = scrape_between($scraped_mksum_data, '<div class="table-responsive">', "</div>");   // Scraping downloaded dara in $scraped_page for content between <title> and </title> tags
+
+       //echo $scraped_mksum_data;
+
+
+      $mk_lstupd =  scrape_between($scraped_mksum_data, 'ข้อมูลล่าสุด','</span>');
+       $mk_set =  scrape_between($scraped_mksum_data, 'SET','</tr>');
+       $mk_set50 =  scrape_between($scraped_mksum_data, 'SET50','</tr>');
+       $mk_set100 =  scrape_between($scraped_mksum_data, 'SET100','</tr>');
+       $mk_sethd =  scrape_between($scraped_mksum_data, 'SETHD','</tr>');
+
+
+
+       $set_arr  = explode("/td>",$mk_set);
+       $set50_arr  = explode("/td>",$mk_set50);
+       $set100_arr  = explode("/td>",$mk_set100);
+       $sethd_arr  = explode("/td>",$mk_sethd);
+
+      echo "ข้อมูล ณ เวลา "$mk_lstupd . chr(13). chr(10);
+      echo "SET : last " . scrape_between($set_arr[1],">","<") . " Change " . scrape_between($set_arr[2],">","<") . " % Chg " . scrape_between($set_arr[3],">","<") . " Vol " . scrape_between($set_arr[7],">","<") . chr(13). chr(10);
+      echo "SET50 : last " . scrape_between($set50_arr[1],">","<") . " Change " . scrape_between($set50_arr[2],">","<") . " % Chg " . scrape_between($set50_arr[3],">","<") . " Vol " . scrape_between($set50_arr[7],">","<") . chr(13). chr(10);
+      echo "SET100 : last " . scrape_between($set100_arr[1],">","<") . " Change " . scrape_between($set100_arr[2],">","<") . " % Chg " . scrape_between($set100_arr[3],">","<") . " Vol " . scrape_between($set100_arr[7],">","<") . chr(13). chr(10);
+      echo "SETHD : last " . scrape_between($sethd_arr[1],">","<") . " Change " . scrape_between($sethd_arr[2],">","<") . " % Chg " . scrape_between($sethd_arr[3],">","<") . " Vol " . scrape_between($sethd_arr[7],">","<") . chr(13). chr(10);
+      echo "--------------------------------". chr(13). chr(10);
+//       echo count($set_arr);
+/*
+       for ($x = 0; $x < 9; $x++) {
+
+           echo "arr [" . $x . "] " . $set_arr[$x] . "</br>";
+
+       }
+*/
+
+
+
+       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         $scraped_page_raw = curl("http://www.settrade.com/C13_InvestorType.jsp");    // Downloading IMDB home page to variable $scraped_page
         $scraped_data = iconv('TIS-620','UTF-8//ignore',$scraped_page_raw);
@@ -107,6 +148,8 @@
         echo "[5] : " . $instu_arr[5] . "</br>";
         echo "[6] : " . $instu_arr[6] . "</br>";
 */
+
+
 
         echo $summarydate . chr(13). chr(10);
         echo "สถาบันในประเทศ :". chr(13). chr(10). " ซื้อ " . $instu_arr[0] . chr(13). chr(10). " ขาย " . $instu_arr[2] . chr(13). chr(10)." สุทธิ " . $instu_arr[4]. chr(13). chr(10);
