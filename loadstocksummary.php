@@ -109,10 +109,10 @@
 */
 
         echo $summarydate . chr(13). chr(10);
-        echo "สถาบันในประเทศ : ซื้อ " . $instu_data[0] . " ขาย " . $instu_arr[2] ." สุทธิ " . $instu_arr[4]. chr(13). chr(10);
-        echo "บัญชีบริษัทหลักทรัพย์ : ซื้อ " . $broker_arr[0] . " ขาย " . $broker_arr[2] ." สุทธิ " . $broker_arr[4]. chr(13). chr(10);
-        echo "นักลงทุนต่างประเทศ : ซื้อ " . $foriegn_arr[0] . " ขาย " . $foriegn_arr[2] ." สุทธิ " . $foriegn_arr[4]. chr(13). chr(10);
-        echo "นักลงทุนทั่วไปในประเทศ : ซื้อ " . $local_arr[0] . " ขาย " . $local_arr[2] ." สุทธิ " . $local_arr[4]. chr(13). chr(10);
+        echo "สถาบันในประเทศ :". chr(13). chr(10). " ซื้อ " . $instu_arr[0] . chr(13). chr(10). " ขาย " . $instu_arr[2] . chr(13). chr(10)." สุทธิ " . $instu_arr[4]. chr(13). chr(10);
+        echo "บัญชีบริษัทหลักทรัพย์ :". chr(13). chr(10). " ซื้อ " . $broker_arr[0] . chr(13). chr(10). " ขาย " . $broker_arr[2] . chr(13). chr(10)." สุทธิ " . $broker_arr[4]. chr(13). chr(10);
+        echo "นักลงทุนต่างประเทศ :". chr(13). chr(10). " ซื้อ " . $foriegn_arr[0] . chr(13). chr(10). " ขาย " . $foriegn_arr[2] . chr(13). chr(10)." สุทธิ " . $foriegn_arr[4]. chr(13). chr(10);
+        echo "นักลงทุนทั่วไปในประเทศ :". chr(13). chr(10). " ซื้อ " . $local_arr[0] . chr(13). chr(10). " ขาย " . $local_arr[2] . chr(13). chr(10)." สุทธิ " . $local_arr[4]. chr(13). chr(10);
 
 
 
