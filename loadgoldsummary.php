@@ -38,16 +38,29 @@
         $scraped_page_raw = curl("http://www.goldtraders.or.th/");    // Downloading IMDB home page to variable $scraped_page
         $scraped_data = scrape_between($scraped_page_raw, "DetailPlace_uc_goldprices1_GoldPricesUpdatePanel", "main-tab");   // Scraping downloaded dara in $scraped_page for content between <title> and </title> tags
 
+
+
         $summarydate = scrape_between($scraped_data, "DetailPlace_uc_goldprices1_lblAsTime", "/span>");
         $summarydate = scrape_between($summarydate, ">", "<");
 
+
         $gold1 = scrape_between($scraped_data, "ทองคำแท่ง", "</tr>");
+        $gold1buy = scrape_between($gold1, 'DetailPlace_uc_goldprices1_lblBLBuy', "/span>");
+        $gold1buy = scrape_between($gold1buy, ">", "<");
+        $gold1sell = scrape_between($gold1, 'DetailPlace_uc_goldprices1_lblBLSell', "/span>");
+        $gold1sell = scrape_between($gold1sell, ">", "<");
+
         $gold2 = scrape_between($scraped_data, "ทองรูปพรรณ", "</tr>");
+        $gold2buy = scrape_between($gold2, 'DetailPlace_uc_goldprices1_lblOMBuy', "/span>");
+        $gold2buy = scrape_between($gold2buy, ">", "<");
+        $gold2sell = scrape_between($gold2, 'DetailPlace_uc_goldprices1_lblOMSell', "/span>");
+        $gold2sell = scrape_between($gold2sell, ">", "<");
+
 
         //echo $scraped_data;
-        echo "ประจำวันที่  : " . $summarydate . "</br>";
-        echo "ทองคำแท่ง : " . $gold1 . "</br>";
-        echo "ทองรูปพรรณ : " . $gold2 . "</br>";
+        echo "ประจำวันที่  : " . $summarydate . chr(13). chr(10);
+        echo "ทองคำแท่ง : ". chr(13). chr(10). "ซื้อ " . $gold1buy . chr(13). chr(10). "ขาย " . $gold1sell . chr(13). chr(10);
+        echo "ทองรูปพรรณ : ". chr(13). chr(10). "ซื้อ " . $gold2buy . chr(13). chr(10). "ขาย " . $gold2sell . chr(13). chr(10);
 
 
         /*
