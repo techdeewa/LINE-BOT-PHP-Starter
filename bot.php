@@ -196,10 +196,10 @@ if (!is_null($events['events'])) {
       /* Prepare an insert statement */
       $sqlstr = "INSERT INTO `heroku_08be9207ed67154`.`unknown_inputs` (`input`,`userid`,`username`,`timestamp`) ";
       $sqlstr .= "VALUES (?,?,?, now());
-      $stmt = $conn1->prepare($sqlstr);
+      $stmt1 = $conn1->prepare($sqlstr);
 
 
-      $stmt->bind_param("sss", $val11, $val22, $val33);
+      $stmt1->bind_param("sss", $val11, $val22, $val33);
 
 
 
