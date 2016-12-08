@@ -1,12 +1,6 @@
 <?php
 
-$server = "us-cdbr-iron-east-04.cleardb.net";
-$username = "b9edbb1bdd8a6b";
-$password = "379ac343";
-$db = "heroku_08be9207ed67154";
 
-$conn = new mysqli($server, $username, $password, $db);
-$conn->query("SET NAMES 'utf8'");
 
 
     function scrape_between($data, $start, $end){
@@ -37,6 +31,13 @@ $conn->query("SET NAMES 'utf8'");
         curl_close($ch);    // Closing cURL
         return $data;   // Returning the data from the function
     }
+
+
+    $server = "us-cdbr-iron-east-04.cleardb.net";
+    $username = "b9edbb1bdd8a6b";
+    $password = "379ac343";
+    $db = "heroku_08be9207ed67154";
+
 
 
 $access_token = '9nrLlQp7Hd55PKTI20j0A/StX1fbO8MWQblh2Jf0dNc+uN7AjvI13IAjnTgGgfPPn2DGKE2lPTfvw2odlJBa/MQYZyDE7Mu1U0xbHUGFyru6n3AcOogiLlCeKOIKk3UQr83A9odZMo+N0eKf8/2migdB04t89/1O/w1cDnyilFU=';
@@ -182,6 +183,10 @@ if (!is_null($events['events'])) {
 
           ////////////////////////////////////////////////////////////////////
           // logdb unknown
+
+          $conn = new mysqli($server, $username, $password, $db);
+          $conn->query("SET NAMES 'utf8'");
+
           /* check connection */
           if ($conn->connect_errno) {
               printf("Connect failed: %s\n", $conn->connect_error);
@@ -204,9 +209,9 @@ if (!is_null($events['events'])) {
               $stmt->execute();
 
               /* close statement */
-              $stmt->close();
+            //  $stmt->close();
 
-              $conn->close();
+            //  $conn->close();
 
 				}
 
@@ -227,7 +232,8 @@ if (!is_null($events['events'])) {
 
 
 
-
+      $conn = new mysqli($server, $username, $password, $db);
+      $conn->query("SET NAMES 'utf8'");
 
       /* check connection */
       if ($conn->connect_errno) {
