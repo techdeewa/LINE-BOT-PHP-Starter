@@ -38,6 +38,14 @@
     $password = "379ac343";
     $db = "heroku_08be9207ed67154";
 
+    $conn = new mysqli($server, $username, $password, $db);
+    $conn->query("SET NAMES 'utf8'");
+
+    /* check connection */
+    if ($conn->connect_errno) {
+        printf("Connect failed: %s\n", $conn1->connect_error);
+        exit();
+    }
 
 
 $access_token = '9nrLlQp7Hd55PKTI20j0A/StX1fbO8MWQblh2Jf0dNc+uN7AjvI13IAjnTgGgfPPn2DGKE2lPTfvw2odlJBa/MQYZyDE7Mu1U0xbHUGFyru6n3AcOogiLlCeKOIKk3UQr83A9odZMo+N0eKf8/2migdB04t89/1O/w1cDnyilFU=';
@@ -186,7 +194,18 @@ if (!is_null($events['events'])) {
 
 
 
+      /* Prepare an insert statement */
+      $sqlstr = "INSERT INTO `heroku_08be9207ed67154`.`unknown_inputs` (`input`,`userid`,`username`,`timestamp`) ";
+      $sqlstr .= "VALUES (?,?,?, now())";
+      $stmt = $conn->prepare($sqlstr);
 
+
+      $stmt->bind_param("sss", $val1, $val2, $val3);
+
+      //log chat to DB
+      $val1 = $text; // input
+      $val2 = $userId; // userid
+      $val3 = $userName; // username
 
 
 
@@ -209,14 +228,7 @@ if (!is_null($events['events'])) {
 
 
 
-      $conn = new mysqli($server, $username, $password, $db);
-      $conn->query("SET NAMES 'utf8'");
 
-      /* check connection */
-      if ($conn->connect_errno) {
-          printf("Connect failed: %s\n", $conn->connect_error);
-          exit();
-      }
 
           /* Prepare an insert statement */
           $sqlstr = "INSERT INTO `heroku_08be9207ed67154`.`chatbot` (`userid`,`messageid`,`username`,`messagetext`,`replytext`,`datetimeresponse`)";
