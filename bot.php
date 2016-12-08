@@ -184,20 +184,6 @@ if (!is_null($events['events'])) {
           ////////////////////////////////////////////////////////////////////
       // logdb unknown
 
-      $conn1 = new mysqli($server, $username, $password, $db);
-      $conn1->query("SET NAMES 'utf8'");
-
-      /* check connection */
-      if ($conn1->connect_errno) {
-          printf("Connect failed: %s\n", $conn1->connect_error);
-          exit();
-      }
-
-      /* Prepare an insert statement */
-      $sqlstr = "INSERT INTO `heroku_08be9207ed67154`.`unknown_inputs` (`input`,`userid`,`username`,`timestamp`) ";
-      $sqlstr .= "VALUES (?,?,?, now());
-      $stmt1 = $conn1->prepare($sqlstr);
-
 
 
 
