@@ -193,6 +193,14 @@ if (!is_null($events['events'])) {
           exit();
       }
 
+      /* Prepare an insert statement */
+      $sqlstr = "INSERT INTO `heroku_08be9207ed67154`.`unknown_inputs` (`input`,`userid`,`username`,`timestamp`) ";
+      $sqlstr .= "VALUES (?,?,?, now());
+      $stmt = $conn1->prepare($sqlstr);
+
+
+
+
 
 				}
 
