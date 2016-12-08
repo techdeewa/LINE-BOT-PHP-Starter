@@ -201,10 +201,7 @@ if (!is_null($events['events'])) {
 
       $stmt->bind_param("sss", $val11, $val22, $val33);
 
-      //log chat to DB
-      $val11 = "input"; // input
-      $val22 = "userid"; // userid
-      $val33 = "userName"; // username
+
 
 
 
