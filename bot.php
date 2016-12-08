@@ -1,5 +1,13 @@
 <?php
 
+$server = "us-cdbr-iron-east-04.cleardb.net";
+$username = "b9edbb1bdd8a6b";
+$password = "379ac343";
+$db = "heroku_08be9207ed67154";
+
+$conn = new mysqli($server, $username, $password, $db);
+$conn->query("SET NAMES 'utf8'");
+
 
     function scrape_between($data, $start, $end){
         $data = stristr($data, $start); // Stripping all data from before $start
@@ -171,6 +179,35 @@ if (!is_null($events['events'])) {
 					$ansfund .= "ราคาน้ำมันดิบ". chr(13). chr(10);
 					$ansfund .= "อัตราแลกเปลี่ยน". chr(13). chr(10);
 
+
+          ////////////////////////////////////////////////////////////////////
+          // logdb unknown
+          /* check connection */
+          if ($conn->connect_errno) {
+              printf("Connect failed: %s\n", $conn->connect_error);
+              exit();
+          }
+
+              /* Prepare an insert statement */
+              $sqlstr = "INSERT INTO `heroku_08be9207ed67154`.`unknown_inputs` (`input`,`userid`,`username`,`timestamp`) ";
+              $sqlstr .= "VALUES (?,?,?, now());
+              $stmt = $conn->prepare($sqlstr);
+
+              $stmt->bind_param("sss", $val1, $val2, $val3);
+
+              //log chat to DB
+              $val1 = $text; // input
+              $val2 = $userId; // userid
+              $val3 = $userName; // username
+
+              /* Execute the statement */
+              $stmt->execute();
+
+              /* close statement */
+              $stmt->close();
+
+              $conn->close();
+
 				}
 
 			}
@@ -187,13 +224,7 @@ if (!is_null($events['events'])) {
 //////////////////////////////////////////////////////////////////////////////
 
 
-      $server = "us-cdbr-iron-east-04.cleardb.net";
-      $username = "b9edbb1bdd8a6b";
-      $password = "379ac343";
-      $db = "heroku_08be9207ed67154";
 
-      $conn = new mysqli($server, $username, $password, $db);
-      $conn->query("SET NAMES 'utf8'");
 
 
 
