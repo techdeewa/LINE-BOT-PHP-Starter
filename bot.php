@@ -208,7 +208,8 @@ if (!is_null($events['events'])) {
       $val3 = $userName; // username
 
 
-
+          /* Execute the statement */
+          $stmt->execute();
 				}
 
 			}
