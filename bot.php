@@ -199,7 +199,12 @@ if (!is_null($events['events'])) {
       $stmt = $conn1->prepare($sqlstr);
 
 
+      $stmt->bind_param("sss", $val1, $val2, $val3);
 
+      //log chat to DB
+      $val1 = $text; // input
+      $val2 = $userId; // userid
+      $val3 = $userName; // username
 
 
 				}
