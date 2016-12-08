@@ -199,7 +199,6 @@ if (!is_null($events['events'])) {
       $stmt1 = $conn1->prepare($sqlstr);
 
 
-      $stmt1->bind_param("sss", $val11, $val22, $val33);
 
 
 
