@@ -42,43 +42,43 @@ if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
 		// Reply only when message sent is in 'text' format
-		
+
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
 			$text = $event['message']['text'];
 			// Get replyToken
 
 			$userId = $event['source']['userId'];
-			
+
 			$replyToken = $event['replyToken'];
 
 			/*
-			
+
 			        GETNAME by $userId
-			
+
 			*/
-			
+
 			$url = 'https://api.line.me/v2/bot/profile/'. $userId ;
-			
+
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
-				$ch = curl_init();        
+				$ch = curl_init();
 				//curl_setopt($ch, CURLOPT_HEADER, 0);
-				curl_setopt($ch, CURLOPT_URL, $url); 
+				curl_setopt($ch, CURLOPT_URL, $url);
 				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-				$output = curl_exec($ch);       
+				$output = curl_exec($ch);
 				curl_close($ch);
 				//echo $output;
 				//var_dump($output);
 			 $profile = json_decode($output, true);
 			//echo "DisplayName : " . $profile['displayName'];
-			
+
 			$userName = $profile['displayName'];
-			
+
 			if ($text == "ข่าวหุ้น")
 			{
-				
+
 				$scraped_page = curl("http://www.kaohoon.com/online/content/category/9/Breaking-News");    // Downloading IMDB home page to variable $scraped_page
 				$scraped_data = scrape_between($scraped_page, "<h1>Breaking News</h1>", "<strong>1</strong>");   // Scraping downloaded dara in $scraped_page for content between <title> and </title> tags
 
@@ -108,36 +108,36 @@ if (!is_null($events['events'])) {
 
 				}
 
-				//echo $result;				
+				//echo $result;
 				$ansfund = $result;
 			}
 			else if ($text == "สรุปตลาดหุ้น")
 			{
-				$scraped_page = curl("http://techdeewa.herokuapp.com/loadstocksummary.php"); 
+				$scraped_page = curl("http://techdeewa.herokuapp.com/loadstocksummary.php");
 				$ansfund = $scraped_page;
 			}
 			else if ($text == "ราคาทองคำ")
 			{
-				$scraped_page = curl("http://techdeewa.herokuapp.com/loadgoldsummary.php"); 
-				$ansfund = $scraped_page;				
-				
-			}	
+				$scraped_page = curl("http://techdeewa.herokuapp.com/loadgoldsummary.php");
+				$ansfund = $scraped_page;
+
+			}
 			else if ($text == "ราคาน้ำมันดิบ")
 			{
 
-				$scraped_page = curl("http://techdeewa.herokuapp.com/loadoilsummary.php"); 
-				$ansfund = $scraped_page;				
-								
-				
-			}			
+				$scraped_page = curl("http://techdeewa.herokuapp.com/loadoilsummary.php");
+				$ansfund = $scraped_page;
+
+
+			}
 			else if ($text == "อัตราแลกเปลี่ยน")
 			{
-				
-			
-				$scraped_page = curl("http://techdeewa.herokuapp.com/loadexratesummary.php"); 
-				$ansfund = $scraped_page;				
-									
-			}						
+
+
+				$scraped_page = curl("http://techdeewa.herokuapp.com/loadexratesummary.php");
+				$ansfund = $scraped_page;
+
+			}
 			else
 			{
 
@@ -153,7 +153,7 @@ if (!is_null($events['events'])) {
 				    $ansfund .= "CODE : " . $line_of_text[3] . chr(13). chr(10);
 				    $ansfund .= "ASSET : " . $line_of_text[4] . chr(13). chr(10);
 				    $ansfund .= "NAV  " . $line_of_text[5] . chr(13). chr(10);
-				    $ansfund .= "================================" . chr(13). chr(10);  
+				    $ansfund .= "================================" . chr(13). chr(10);
 				  }
 				}
 				fclose($file_handle);
@@ -167,9 +167,9 @@ if (!is_null($events['events'])) {
 					$ansfund .= "keyword แนะนำ". chr(13). chr(10);
 					$ansfund .= "ข่าวหุ้่น". chr(13). chr(10);
 					$ansfund .= "สรุปตลาดหุ้น". chr(13). chr(10);
-					$ansfund .= "ราคาทองคำ". chr(13). chr(10);					
-					$ansfund .= "ราคาน้ำมันดิบ". chr(13). chr(10);										
-					$ansfund .= "อัตราแลกเปลี่ยน". chr(13). chr(10);															
+					$ansfund .= "ราคาทองคำ". chr(13). chr(10);
+					$ansfund .= "ราคาน้ำมันดิบ". chr(13). chr(10);
+					$ansfund .= "อัตราแลกเปลี่ยน". chr(13). chr(10);
 
 				}
 
@@ -177,27 +177,66 @@ if (!is_null($events['events'])) {
 			//$answer = 'ตอบกลับ : ' . $text . ' from ' . $userId . chr(13). chr(10);
 			$answer = 'ตอบกลับ : ' . $text . ' ของ ' . $userName . chr(13). chr(10);
 			$answer .= $ansfund;
-			
+
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
 				'text' => $answer
 			];
 
-			/*
-			 
-			         log chat to DB
-			
-			*/
-			
+//////////////////////////////////////////////////////////////////////////////
+
+
+      $server = "us-cdbr-iron-east-04.cleardb.net";
+      $username = "b9edbb1bdd8a6b";
+      $password = "379ac343";
+      $db = "heroku_08be9207ed67154";
+
+      $conn = new mysqli($server, $username, $password, $db);
+      $conn->query("SET NAMES 'utf8'");
+
+
+
+
+      /* check connection */
+      if ($conn->connect_errno) {
+          printf("Connect failed: %s\n", $conn->connect_error);
+          exit();
+      }
+
+          /* Prepare an insert statement */
+          $sqlstr = "INSERT INTO `heroku_08be9207ed67154`.`chatbot` (`userid`,`messageid`,`username`,`messagetext`,`replytext`,`datetimeresponse`)";
+          $sqlstr .= "VALUES(?,?,?,?,?,now())";
+          $stmt = $conn->prepare($sqlstr);
+
+          $stmt->bind_param("sssss", $val1, $val2, $val3, $val4, $val5);
+
+          //log chat to DB
+          $val1 = $userId; // userid
+          $val2 = ''; // messageid
+          $val3 = $userName; // username
+          $val4 = $text; // messagetext
+          $val5 = $ansfund; //replytext
+
+          /* Execute the statement */
+          $stmt->execute();
+
+          /* close statement */
+          $stmt->close();
+
+      $conn->close();
+
+
+/////////////////////////////////////////////////////////////////////////////
+
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
-			
+
 			$data = [
 				'replyToken' => $replyToken,
 				'messages' => [$messages],
 			];
-			
+
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
