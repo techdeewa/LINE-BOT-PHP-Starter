@@ -181,7 +181,18 @@ if (!is_null($events['events'])) {
 					$ansfund .= "อัตราแลกเปลี่ยน". chr(13). chr(10);
 
 
-      
+          ////////////////////////////////////////////////////////////////////
+      // logdb unknown
+
+      $conn1 = new mysqli($server, $username, $password, $db);
+      $conn1->query("SET NAMES 'utf8'");
+
+      /* check connection */
+      if ($conn1->connect_errno) {
+          printf("Connect failed: %s\n", $conn1->connect_error);
+          exit();
+      }
+
 
 				}
 
