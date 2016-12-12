@@ -254,6 +254,28 @@ if (!is_null($events['events'])) {
 				];
 				
 			}
+			else if ($text == "ตัวอย่าง")
+			{
+			$actions =  array();
+			array_push($actions, array('type' => 'message', 'label' => 'SET', 'text' => 'set'));
+			array_push($actions, array('type' => 'message', 'label' => 'SET50', 'text' => 'set50'));
+			array_push($actions, array('type' => 'message', 'label' => 'SET50', 'text' => 'setHD'));
+
+
+			$template = [
+			  'type' => 'buttons',
+			  "thumbnailImageUrl": "https://3.bp.blogspot.com/-W__wiaHUjwI/Vt3Grd8df0I/AAAAAAAAA78/7xqUNj8ujtY/s1600/image02.png",
+			  "title": "Menu Select",
+			  'text' => 'Please Select?',
+			  'actions' => $actions
+			  ];
+
+			$tmpmsg = [
+			    'type' => 'template',
+			    'altText' => 'This a sample template',
+			    'template' => $template
+			  ];	
+			}
 			else
 			{
 			
@@ -319,6 +341,13 @@ if (!is_null($events['events'])) {
 					'replyToken' => $replyToken,
 					'messages' => [$confirm],
 				];					
+			}
+			else if ($text == "ตัวอย่าง")
+			{
+				$data = [
+					  'replyToken' => 'replyToken',
+					  'messages' => [$tmpmsg],
+				];	
 			}
 			else
 			{
