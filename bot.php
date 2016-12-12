@@ -221,11 +221,15 @@ if (!is_null($events['events'])) {
 			{
 				$messages = array();
 
+				/*
 				$messages [0]["type"]= 'text';
 				$messages [0]["text"]= 'answer1';
 
 				$messages [1]["type"]= 'text';
 				$messages [1]["text"]= 'answer2';
+				*/
+				array_push($messages, array('type' => 'text', 'text' => 'answer1'));
+				array_push($messages, array('type' => 'text', 'text' => 'answer2'));
 			}
 			else
 			{
