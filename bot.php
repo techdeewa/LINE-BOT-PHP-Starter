@@ -217,12 +217,25 @@ if (!is_null($events['events'])) {
 			$answer = 'ตอบกลับ : ' . $text . ' ของ ' . $userName . chr(13). chr(10);
 			$answer .= $ansfund;
 
+			if ($text == "ทดสอบ")
+			{
+				$messages = array();
+
+				$messages [0]["type"]= 'text';
+				$messages [0]["text"]= 'answer1';
+
+				$messages [1]["type"]= 'text';
+				$messages [1]["text"]= 'answer2';
+			}
+			else
+			{
+			
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
 				'text' => $answer
-			];
-
+				];
+			}
 //////////////////////////////////////////////////////////////////////////////
 
 
