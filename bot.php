@@ -312,11 +312,22 @@ if (!is_null($events['events'])) {
 			];
 			*/
 
+			if ($text = "ทดสอบ")
+			{
+
+				$data = [
+					'replyToken' => $replyToken,
+					'messages' => [$confirm],
+				];					
+			}
+			else
+			{
 				$data = [
 					'replyToken' => $replyToken,
 					'messages' => $messages,
 				];			
-
+			}
+			
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
