@@ -345,7 +345,7 @@ if (!is_null($events['events'])) {
 			else if ($text == "ตัวอย่าง")
 			{
 				$data = [
-					  'replyToken' => 'replyToken',
+					  'replyToken' => $replyToken,
 					  'messages' => [$tmpmsg],
 				];	
 			}
