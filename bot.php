@@ -246,7 +246,12 @@ if (!is_null($events['events'])) {
 				  'actions' => $actions
 				  ];
 
-
+				$confirm = [
+				  'replyToken' => $replyToken,
+				  'type' => 'template',
+				  'alttext' => 'confirmation template',
+				  'template' => $template
+				];
 				
 			}
 			else
@@ -306,22 +311,12 @@ if (!is_null($events['events'])) {
 				'messages' => [$messages],
 			];
 			*/
-			if ($text == "ทดสอบ")
-			{
-				$data = [
-				  'replyToken' => $replyToken,
-				  'type' => 'template',
-				  'alttext' => 'confirmation template',
-				  'template' => $template
-				];
-			}
-			else
-			{
+
 				$data = [
 					'replyToken' => $replyToken,
-					'messages' => $messages,
+					'messages' => $confirm,
 				];			
-			}
+
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
