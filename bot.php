@@ -219,7 +219,7 @@ if (!is_null($events['events'])) {
 
 			if ($text == "ทดสอบ")
 			{
-				$messages = array();
+//				$messages = array();
 
 				/*
 				$messages [0]["type"]= 'text';
@@ -228,8 +228,26 @@ if (!is_null($events['events'])) {
 				$messages [1]["type"]= 'text';
 				$messages [1]["text"]= 'answer2';
 				*/
-				array_push($messages, array('type' => 'text', 'text' => 'answer1'));
-				array_push($messages, array('type' => 'text', 'text' => 'answer2'));
+//				array_push($messages, array('type' => 'text', 'text' => 'answer1'));
+//				array_push($messages, array('type' => 'text', 'text' => 'answer2'));
+
+				$actions =  array();
+				array_push($actions, array('type' => 'message', 'label' => 'Yes', 'text' => 'yes'));
+				array_push($actions, array('type' => 'message', 'label' => 'No', 'text' => 'no'));
+
+				/*
+				$template = array();
+				array_push($template, array('type' => 'confirm', 'text' => 'Are you sure?', 'actions' => $actions));
+				*/
+
+				$template = [
+				  'type' => 'confirm',
+				  'text' => 'Are you sure?',
+				  'actions' => $actions
+				  ];
+
+
+				
 			}
 			else
 			{
@@ -288,12 +306,22 @@ if (!is_null($events['events'])) {
 				'messages' => [$messages],
 			];
 			*/
-			
-			$data = [
-				'replyToken' => $replyToken,
-				'messages' => $messages,
-			];			
-
+			if ($text == "ทดสอบ")
+			{
+				$data = [
+				  'replyToken' => $replyToken,
+				  'type' => 'template',
+				  'alttext' => 'confirmation template',
+				  'template' => $template
+				];
+			}
+			else
+			{
+				$data = [
+					'replyToken' => $replyToken,
+					'messages' => $messages,
+				];			
+			}
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
