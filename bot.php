@@ -230,11 +230,17 @@ if (!is_null($events['events'])) {
 			else
 			{
 			
+				$messages = array(); //Your array that you want to push the value into
+
+				array_push($messages, array('type' => 'text', 'text' => $answer));
+				
+			/*
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
 				'text' => $answer
 				];
+			*/	
 			}
 //////////////////////////////////////////////////////////////////////////////
 
@@ -271,11 +277,18 @@ if (!is_null($events['events'])) {
 
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
-
+			
+			/*
 			$data = [
 				'replyToken' => $replyToken,
 				'messages' => [$messages],
 			];
+			*/
+			
+			$data = [
+				'replyToken' => $replyToken,
+				'messages' => $messages,
+			];			
 
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
