@@ -312,7 +312,7 @@ if (!is_null($events['events'])) {
 			];
 			*/
 
-			if ($text = "ทดสอบ")
+			if ($text == "ทดสอบ")
 			{
 
 				$data = [
