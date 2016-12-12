@@ -249,7 +249,7 @@ if (!is_null($events['events'])) {
 				$confirm = [
 				  'replyToken' => $replyToken,
 				  'type' => 'template',
-				  'alttext' => 'confirmation template',
+				  'altText' => 'confirmation template',
 				  'template' => $template
 				];
 				
