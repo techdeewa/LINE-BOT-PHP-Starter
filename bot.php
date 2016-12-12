@@ -264,8 +264,8 @@ if (!is_null($events['events'])) {
 
 			$template = [
 			  'type' => 'buttons',
-			  "thumbnailImageUrl": "https://3.bp.blogspot.com/-W__wiaHUjwI/Vt3Grd8df0I/AAAAAAAAA78/7xqUNj8ujtY/s1600/image02.png",
-			  "title": "Menu Select",
+			  "thumbnailImageUrl" => "https://3.bp.blogspot.com/-W__wiaHUjwI/Vt3Grd8df0I/AAAAAAAAA78/7xqUNj8ujtY/s1600/image02.png",
+			  "title" => "Menu Select",
 			  'text' => 'Please Select?',
 			  'actions' => $actions
 			  ];
