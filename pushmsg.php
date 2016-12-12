@@ -26,7 +26,7 @@ $messages = [
 
 $data = [
   'to' => 'Ufe79d34680fcd7c2cf50f61c797c3931',
-  'messages' => $messages,
+  'messages' => [$messages],
 ];
 
 
