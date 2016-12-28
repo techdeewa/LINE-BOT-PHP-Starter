@@ -60,8 +60,10 @@ class Segment {
                 $previous_string .= $current_char;
 		    
             } else {
+		    
+		    echo "test clear_duplicated 64";
                 if (mb_strlen($previous_string) > 3) {
-			echo "test clear_duplicated 64";  
+			  
                     $dup_list_array[] = $previous_string;
                     $dup_list_array_replace[] = $current_char;
                     $string = str_replace($previous_string, $previous_char, $string);
