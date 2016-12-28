@@ -72,6 +72,7 @@ class Segment {
     public function get_segment_array($input_string) {
         $this->_input_string = $input_string;
 
+	    echo "test get_segment_array";
 
         // ลบเครื่องหมายคำพูด, ตัวแบ่งประโยค //
         $this->_input_string = str_replace(array('\'', '‘', '’', '“', '”', '"', '-', '/', '(', ')', '{', '}', '...', '..', '…', '', ',', ':', '|', '\\'), '', $this->_input_string);
