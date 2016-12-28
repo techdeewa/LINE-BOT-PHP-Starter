@@ -48,7 +48,7 @@ class Segment {
         $dup_list_array = array();
         $dup_list_array_replace = array();
 	    
-	    echo "test clear_duplicated 51";  
+	    
 	    
         foreach ($input_string_split as $current_char) {
 
@@ -65,6 +65,9 @@ class Segment {
                 $previous_string = $current_char;
             }
         }
+	    
+	    echo "test clear_duplicated 69";  
+	    
         if (mb_strlen($previous_string) > 3) {
             $dup_list_array[] = $previous_string;
             $dup_list_array_replace = $current_char;
