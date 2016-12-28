@@ -72,7 +72,7 @@ class Segment {
     public function get_segment_array($input_string) {
         $this->_input_string = $input_string;
 
-	    echo "test get_segment_array";
+	    
 
         // ลบเครื่องหมายคำพูด, ตัวแบ่งประโยค //
         $this->_input_string = str_replace(array('\'', '‘', '’', '“', '”', '"', '-', '/', '(', ')', '{', '}', '...', '..', '…', '', ',', ':', '|', '\\'), '', $this->_input_string);
@@ -83,7 +83,7 @@ class Segment {
         // กำจัดซ้ำ //
         $this->_input_string = $this->clear_duplicated($this->_input_string);
 
-
+	echo "test get_segment_array";
         // แยกประโยคจากช่องว่าง (~เผื่อไว้สำหรับภาษาอังกฤษ) //
         $this->_input_string_exploded = explode(' ', $this->_input_string);
 
