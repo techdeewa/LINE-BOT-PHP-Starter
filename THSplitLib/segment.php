@@ -47,23 +47,13 @@ class Segment {
         $previous_string = '';
         $dup_list_array = array();
         $dup_list_array_replace = array();
-	    
-	    
-	    
         foreach ($input_string_split as $current_char) {
 
-		
-		
             if ($previous_char == $current_char) {
-		 echo "test clear_duplicated 58";     
                 $previous_char = $current_char;
                 $previous_string .= $current_char;
-		    
             } else {
-		    
-		    echo "test clear_duplicated 64";
-                if (mb_strlen($previous_string) > 3) {
-			  
+                if (strlen($previous_string) > 3) {
                     $dup_list_array[] = $previous_string;
                     $dup_list_array_replace[] = $current_char;
                     $string = str_replace($previous_string, $previous_char, $string);
@@ -72,10 +62,7 @@ class Segment {
                 $previous_string = $current_char;
             }
         }
-	    
-	    
-	    
-        if (mb_strlen($previous_string) > 3) {
+        if (strlen($previous_string) > 3) {
             $dup_list_array[] = $previous_string;
             $dup_list_array_replace = $current_char;
         }
@@ -86,19 +73,16 @@ class Segment {
         $this->_input_string = $input_string;
 
 
-
         // ลบเครื่องหมายคำพูด, ตัวแบ่งประโยค //
         $this->_input_string = str_replace(array('\'', '‘', '’', '“', '”', '"', '-', '/', '(', ')', '{', '}', '...', '..', '…', '', ',', ':', '|', '\\'), '', $this->_input_string);
         // เปลี่ยน newline ให้กลายเป็น Space เพื่อที่ใช้สำหรับ Trim
         $this->_input_string = str_replace(array("\r", "\r\n", "\n"), ' ', $this->_input_string);
 
 
-
         // กำจัดซ้ำ //
         $this->_input_string = $this->clear_duplicated($this->_input_string);
 
-	 	    	    	
-	    
+
         // แยกประโยคจากช่องว่าง (~เผื่อไว้สำหรับภาษาอังกฤษ) //
         $this->_input_string_exploded = explode(' ', $this->_input_string);
 
@@ -117,12 +101,10 @@ class Segment {
             }
         }
 
-
-	    
         // จัดการคำที่ตัดที่ยาวผิดปกติ (~อาจจะเป็นเพราะว่าพิมผิด) โดยการตัดตาม Dict แบบธรรมดา//
         $tmp_result = array();
         foreach ($this->_segmented_result as $result_row) {
-            if (mb_strlen($result_row) > 10) {
+            if (strlen($result_row) > 10) {
 
                 $current_string_array = $this->_unicode_obj->uni_strsplit(trim($result_row));
                 $current_array_result = $this->_segment_by_dictionary($current_string_array);
