@@ -29,16 +29,18 @@ $tweets = $twitter->get('https://api.twitter.com/1.1/search/tweets.json?q=%23ร
 
 ?>
 <?php foreach ($tweets->statuses as $key => $tweet) { ?>
-    <!--Tweet : <img src="<?=$tweet->user->profile_image_url;?>" /><?=$tweet->text; ?><br> -->
+    <img src="<?=$tweet->user->profile_image_url;?>" /><br/>
+    <?=$tweet->user->name;?>(@<?=$tweet->user->screen_name;?>)<br>
     <?=$tweet->text; ?><br>
+    <!--<?=$tweet->text; ?><br> -->
 
     ====>Split: <?php
       $segment = new Segment();
-
+echo "test";
       $result = $segment->get_segment_array($tweet->text);
       echo implode('|', $result);
     ?><br>
-    <hr/>  
+    <hr/>
   
 <?php } ?>
 
