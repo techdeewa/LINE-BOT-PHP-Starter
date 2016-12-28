@@ -36,11 +36,11 @@ $tweets = $twitter->get('https://api.twitter.com/1.1/search/tweets.json?q=%23ร
 
     ====>Split: <?php
       $segment = new Segment();
-echo "test";
+
       $result = $segment->get_segment_array($tweet->text);
-echo "test2";                                                     
+
       echo implode('|', $result);
-echo "test3";                                                     
+
     ?><br>
     <hr/>
   
