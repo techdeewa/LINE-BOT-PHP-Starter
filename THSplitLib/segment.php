@@ -47,6 +47,9 @@ class Segment {
         $previous_string = '';
         $dup_list_array = array();
         $dup_list_array_replace = array();
+	    
+	    echo "test clear_duplicated 51";  
+	    
         foreach ($input_string_split as $current_char) {
 
             if ($previous_char == $current_char) {
@@ -84,7 +87,7 @@ class Segment {
         // กำจัดซ้ำ //
         $this->_input_string = $this->clear_duplicated($this->_input_string);
 
-	 	    	    	echo "test get_segment_array 87";   
+	 	    	    	
 	    
         // แยกประโยคจากช่องว่าง (~เผื่อไว้สำหรับภาษาอังกฤษ) //
         $this->_input_string_exploded = explode(' ', $this->_input_string);
