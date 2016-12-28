@@ -30,7 +30,14 @@ $access_token_secret = "LsCT8obowyooAUBtL2DIz2UtnX3Uv1jPYGw3Qqb4WQfIo";
 <form action="" method="post">
   <label>Search : <input type="text" name="keyword" value="<?=$_POST["keyword"]?>"/></label>
   <br/>
-  <?= urlencode($_POST["keyword"]);?>
+  <?
+  if (isset($_POST["keyword"])){
+
+  echo urlencode($_POST["keyword"]);
+
+  }
+
+  ?>
   <hr/>
 </form>
 <?php
@@ -44,6 +51,7 @@ if (isset($_POST["keyword"])){
     <?php foreach ($tweets->statuses as $key => $tweet) { ?>
         <img src="<?=$tweet->user->profile_image_url;?>" /><br/>
         <?=$tweet->user->name;?>(@<?=$tweet->user->screen_name;?>)<br>
+        <?=$tweet->created_at?>)<br>
         <?=$tweet->text; ?><br>
         <!--<?=$tweet->text; ?><br> -->
 
