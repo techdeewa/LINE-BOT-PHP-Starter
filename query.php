@@ -5,7 +5,7 @@
  * selimhallac@gmail.com
  */
 include "twitteroauth.php";
-include "THSplitLib/segment.php";
+include(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'THSplitLib/segment.php');
 
 $consumer_key = "pfIvJnT5DOhCsaHUWUy51Aoa4";
 $consumer_secret = "CFPK5eLYOwVKnA4WrODtwPolNxb46OiuyYKCLez0bqIBL2Hrdq";
@@ -32,6 +32,14 @@ $tweets = $twitter->get('https://api.twitter.com/1.1/search/tweets.json?q=%23ร
     <!--Tweet : <img src="<?=$tweet->user->profile_image_url;?>" /><?=$tweet->text; ?><br> -->
     <?=$tweet->text; ?><br>
 
+    ====>Split: <?php
+      $segment = new Segment();
+
+      $result = $segment->get_segment_array($tweet->text);
+      echo implode('|', $result);
+    ?><br>
+    <hr/>  
+  
 <?php } ?>
 
 
