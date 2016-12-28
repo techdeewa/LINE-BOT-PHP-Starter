@@ -79,11 +79,12 @@ class Segment {
         // เปลี่ยน newline ให้กลายเป็น Space เพื่อที่ใช้สำหรับ Trim
         $this->_input_string = str_replace(array("\r", "\r\n", "\n"), ' ', $this->_input_string);
 
+	    	    	echo "test get_segment_array 82";
 
         // กำจัดซ้ำ //
         $this->_input_string = $this->clear_duplicated($this->_input_string);
 
-	echo "test get_segment_array";
+
         // แยกประโยคจากช่องว่าง (~เผื่อไว้สำหรับภาษาอังกฤษ) //
         $this->_input_string_exploded = explode(' ', $this->_input_string);
 
@@ -102,6 +103,8 @@ class Segment {
             }
         }
 
+
+	    
         // จัดการคำที่ตัดที่ยาวผิดปกติ (~อาจจะเป็นเพราะว่าพิมผิด) โดยการตัดตาม Dict แบบธรรมดา//
         $tmp_result = array();
         foreach ($this->_segmented_result as $result_row) {
